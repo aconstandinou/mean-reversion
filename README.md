@@ -29,18 +29,18 @@ Here are the python libraries used in the mean reversion tests. Version numbers 
 
 ### Useful Information
 
-# For all tests
+### For all tests
 1. All tests perform mean reversion analysis on data held in a pandas dataframe. Therefore if you plan on using the methods within each python script for your own use, ensure that the input variable to the method is a pandas dataframe.
 
-# Augmented Dickey Fuller Test (ADF) `aug_dickey_fuller_test.py`
+### Augmented Dickey Fuller Test (ADF) `aug_dickey_fuller_test.py`
 1. Performs the ADF test with lags of 2 to 20.
 2. Output two files: one file for t-test < 1% critical level, and one file for t-test < 5% critical level
 
-# Hurst Exponent (HE) `he_test.py`
+### Hurst Exponent (HE) `he_test.py`
 1. Calculates the Hurst Exponent with range 2 to 100.
 2. Output a file of tickers that passed the HE test where HE < 0.5. This file is used in the `half_life.py` script for further analysis.
 
-# Half-Life `half_life.py`
+### Half-Life `half_life.py`
 1. Output file from `he_test.py` is needed to run this python script.
 2. Performs the Half-Life calculation on stocks that passed HE criteria of < 0.5.
 3. Output two files: one file of tickers where Half-Life <= 50.0, second file of tickers where Half-Life > 50.0.
