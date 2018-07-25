@@ -1,4 +1,4 @@
-# Evaluating Mean Reversion concepts in equity market data
+# Mean Reversion concepts in equity market data
 
 ###### This project is meant to use python and the stattools library in evaluating mean reversion concepts. There is also code that utilizes a previously built PostgreSQL database of stock data to find pairs of stocks that exhibit cointegration. By using stock data and analyzing the data for mean reversion characteristics, we can begin to build a foundation for future analysis. Specifically, I plan on continuing this research within the framework of pairs trading equities.
 
@@ -31,6 +31,7 @@ Here are the python libraries used in the mean reversion tests. Version numbers 
 
 ### For all tests
 1. All tests perform mean reversion analysis on data held in a pandas dataframe. Therefore if you plan on using the methods within each python script for your own use, ensure that the input variable to the method is a pandas dataframe.
+2. Stock data used in these tests were from date range '2004-12-30' to '2010-12-30' which equates to around half of our data samples.
 
 ### Augmented Dickey Fuller Test (ADF) `aug_dickey_fuller_test.py`
 1. Performs the ADF test with lags of 2 to 20.
