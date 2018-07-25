@@ -127,6 +127,10 @@ def main():
         
         # convert query results to pandas dataframe
         stock_data = pd.DataFrame(results, columns=['Date', 'Adj_Close'])
+        
+        # ensure our df is in order
+        stock_data = stock_data.sort_values(by=['Date'], ascending = True)
+        
         # change our data type in our Adj Close column
         stock_data['Adj_Close'] = stock_data['Adj_Close'].astype(float)
                 
@@ -137,10 +141,15 @@ def main():
         try:
             stock_data.replace([np.inf, -np.inf], np.nan)
             stock_data.fillna(0, inplace=True)
+            
+            stock_data = stock_data.sort_values(by=['Date'], ascending = True)
+            # re-index our df
+            stock_data = stock_data.reset_index(drop=True)
+        
             stock_lag = stock_data['Adj_Close'].shift(1)
-            stock_lag.at[1] = 1.0
+            stock_lag.at[0] = 1.0
             stock_returns = stock_data['Adj_Close'] - stock_lag
-            stock_returns.at[1] = 1.0
+            stock_returns.at[0] = 1.0
             
             # run OLS regression
             # add constant to predictor

@@ -125,11 +125,18 @@ def main():
         
         # convert query results to pandas dataframe
         stock_data = pd.DataFrame(results, columns=['Date', 'Adj_Close'])
+        
+        # ensure our market data is in order
+        stock_data = stock_data.sort_values(by=['Date'], ascending = True)
+        
         # change our data type in our Adj Close column
         stock_data['Adj_Close'] = stock_data['Adj_Close'].astype(float)
                 
         mask = (stock_data['Date'] > start_date) & (stock_data['Date'] <= end_date)
         stock_data = stock_data.loc[mask]
+        
+        # re-index our df
+        stock_data = stock_data.reset_index(drop=True)
         
         # calculate our Hurst Exponent on Adj. Close data as an array of values
         result = hurst_exponent(stock_data['Adj_Close'].values)
